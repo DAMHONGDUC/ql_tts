@@ -17,7 +17,7 @@ public class UserRepositoryImpl implements UserRepository {
 		users.add(new User("id1", "tendangnhap1", "matkhau1", "ten1", "email1", "sdt1" ));
 		users.add(new User("id2", "tendangnhap2", "matkhau2", "ten2", "email2", "sdt2" ));
 		users.add(new User("id3", "tendangnhap3", "matkhau3", "ten3", "email3", "sdt3" ));
-		users.add(new User("id4", "tendangnhap4", "matkhau4", "ten4", "email4", "sdt4" ));
+		users.add(new User("id4", "tendangnhap4", "matkhau4", "ten4", "email4", "sdt48" ));
 	}
 	
 	@Override
