@@ -2,13 +2,13 @@ package com.example.pv.hanbiro.ql_tts.Model;
 
 public class User {
 
-	private String id;
+	private int id;
 	private String tendangnhap;
 	private String matkhau;
 	private String ten;
 	private String email;
 	private String sdt;
-	public User(String id, String tendangnhap, String matkhau, String ten, String email, String sdt) {
+	public User(int id, String tendangnhap, String matkhau, String ten, String email, String sdt) {
 		super();
 		this.id = id;
 		this.tendangnhap = tendangnhap;
@@ -17,10 +17,13 @@ public class User {
 		this.email = email;
 		this.sdt = sdt;
 	}
-	public String getId() {
+	
+	public User() {}
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getTendangnhap() {

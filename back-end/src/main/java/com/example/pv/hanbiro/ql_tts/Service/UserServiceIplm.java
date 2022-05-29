@@ -26,7 +26,7 @@ public class UserServiceIplm implements UserService{
 	}
 
 	@Override
-	public boolean deleteUser(String id) {
+	public boolean deleteUser(int id) {
 		return repository.deleteUser(id);
 	}
 

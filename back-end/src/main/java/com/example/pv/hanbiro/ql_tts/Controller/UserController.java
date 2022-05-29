@@ -46,8 +46,8 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteStudent(@PathVariable("id") String mssv){
-		boolean result = service.deleteUser(mssv.toUpperCase());
+	public ResponseEntity<String> deleteStudent(@PathVariable("id") int id){
+		boolean result = service.deleteUser(id);
 		
 		if(result)
 			return new ResponseEntity<String>("Đã xóa thành công.", HttpStatus.NO_CONTENT);

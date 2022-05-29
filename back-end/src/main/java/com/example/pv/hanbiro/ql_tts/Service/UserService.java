@@ -9,5 +9,5 @@ public interface UserService {
 	
 	User addUser(User user);
 	
-	boolean deleteUser(String id);
+	boolean deleteUser(int id);
 }
