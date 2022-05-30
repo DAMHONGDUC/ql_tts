@@ -75,7 +75,11 @@ export const Menu = (props) => {
   };
 
   const onDeleteUser = (currentUser) => {
-    setUsers(users.filter((i) => i.id !== currentUser.id));
+    UserService.deleteUser(currentUser.id).then((response) => {
+      if (response.data === "Deleted user successfully") {
+        setUsers(users.filter((i) => i.id !== currentUser.id));
+      }
+    });
   };
 
   return (
