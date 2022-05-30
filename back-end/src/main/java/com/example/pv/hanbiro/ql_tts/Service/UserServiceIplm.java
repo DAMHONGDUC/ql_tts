@@ -1,11 +1,13 @@
-package com.example.pv.hanbiro.ql_tts.Service;
+package com.example.pv.hanbiro.ql_tts.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.pv.hanbiro.ql_tts.Model.User;
-import com.example.pv.hanbiro.ql_tts.Repository.UserRepository;
+import com.example.pv.hanbiro.ql_tts.exception.InvalidUserException;
+import com.example.pv.hanbiro.ql_tts.model.User;
+import com.example.pv.hanbiro.ql_tts.repository.UserRepository;
 
 @Service
 public class UserServiceIplm implements UserService{
@@ -17,17 +19,23 @@ public class UserServiceIplm implements UserService{
 	
 	@Override
 	public List<User> getUsers() {
-		return repository.getUsers();
+		return repository.findAll();
 	}
 
 	@Override
 	public User addUser(User user) {
-		return repository.addUser(user);
+		return repository.save(user);
 	}
 
 	@Override
-	public boolean deleteUser(int id) {
-		return repository.deleteUser(id);
+	public void deleteUser(long id) {
+		
+		Optional<User> userOpt = repository.findById(id);
+		if(!userOpt.isPresent()) {
+			throw new InvalidUserException("User ID is not existed.");
+		}
+		repository.delete(userOpt.get());
+		
 	}
 
 		

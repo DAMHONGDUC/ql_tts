@@ -1,10 +1,11 @@
-package com.example.pv.hanbiro.ql_tts.Controller;
+package com.example.pv.hanbiro.ql_tts.controller;
 
 
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.pv.hanbiro.ql_tts.Model.User;
-import com.example.pv.hanbiro.ql_tts.Service.UserService;
+import com.example.pv.hanbiro.ql_tts.model.User;
+import com.example.pv.hanbiro.ql_tts.service.UserService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("api/")
 public class UserController {
-
+	
 	private UserService service;
 	
 	public UserController(UserService service) {
@@ -46,13 +47,10 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteStudent(@PathVariable("id") int id){
-		boolean result = service.deleteUser(id);
+	public ResponseEntity<String> deleteStudent(@PathVariable("id") long id){
 		
-		if(result)
-			return new ResponseEntity<String>("Đã xóa thành công.", HttpStatus.NO_CONTENT);
-		else
-			return new ResponseEntity<>("ID không tồn tại", HttpStatus.BAD_REQUEST);
+		service.deleteUser(id);
+		return new ResponseEntity<> ("Deleted user successfully", HttpStatus.OK);
 	}
 	
 }

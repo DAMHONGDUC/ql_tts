@@ -1,59 +1,44 @@
-package com.example.pv.hanbiro.ql_tts.Model;
+package com.example.pv.hanbiro.ql_tts.model;
 
+
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name="USER")
 public class User {
 
+	@Id
+	@Column(name="ID_USER")
 	private int id;
+	
+	@Column(name="TENDANGNHAP", nullable = false)
 	private String tendangnhap;
+	
+	@Column(name="MATKHAU", nullable = false)
 	private String matkhau;
+	
+	@Column(name="TEN")
 	private String ten;
+	
+	@Column(name="EMAIL")
 	private String email;
+	
+	@Column(name="SDT")
 	private String sdt;
-	public User(int id, String tendangnhap, String matkhau, String ten, String email, String sdt) {
-		super();
-		this.id = id;
-		this.tendangnhap = tendangnhap;
-		this.matkhau = matkhau;
-		this.ten = ten;
-		this.email = email;
-		this.sdt = sdt;
-	}
 	
-	public User() {}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getTendangnhap() {
-		return tendangnhap;
-	}
-	public void setTendangnhap(String tendangnhap) {
-		this.tendangnhap = tendangnhap;
-	}
-	public String getMatkhau() {
-		return matkhau;
-	}
-	public void setMatkhau(String matkhau) {
-		this.matkhau = matkhau;
-	}
-	public String getTen() {
-		return ten;
-	}
-	public void setTen(String ten) {
-		this.ten = ten;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getSdt() {
-		return sdt;
-	}
-	public void setSdt(String sdt) {
-		this.sdt = sdt;
-	}
 }

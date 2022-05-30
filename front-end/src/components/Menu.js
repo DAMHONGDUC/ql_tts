@@ -14,25 +14,14 @@ import { Toggle } from "rsuite";
 import { FaPencilAlt, FaPlus, FaTrashAlt } from "react-icons/fa";
 import React, { useEffect, useState, Text } from "react";
 
-export const Menu = () => {
-  const defaultUsers = [
-    {
-      id: 1,
-      tendangnhap: "Bob2001",
-      matkhau: "12345",
-      ten: "Nguyen Van Bob",
-      email: "bob@gmail.com",
-      sdt: "0123456789",
-    },
-    {
-      id: 2,
-      tendangnhap: "John2002",
-      matkhau: "12345",
-      ten: "Nguyen Van John",
-      email: "John@gmail.com",
-      sdt: "0123456777",
-    },
-  ];
+export const Menu = (props) => {
+  const [users, setUsers] = React.useState([]);
+
+  useEffect(() => {
+    UserService.getUser().then((response) => {
+      setUsers(response.data);
+    });
+  }, []);
 
   const initCurrentUser = {
     id: null,
@@ -44,7 +33,6 @@ export const Menu = () => {
   };
 
   const Spacer = require("react-spacer");
-  const [users, setUsers] = useState(defaultUsers);
   const [newUser, setNewUser] = useState(initCurrentUser);
   const [editing, setEdit] = useState(false);
   const [showAdd, setShowAdd] = useState(false);

@@ -1,13 +1,12 @@
-package com.example.pv.hanbiro.ql_tts.Repository;
+package com.example.pv.hanbiro.ql_tts.repository;
 
-import java.util.List;
 
-import com.example.pv.hanbiro.ql_tts.Model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository {
-	List<User> getUsers();
+import com.example.pv.hanbiro.ql_tts.model.User;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long>{
 	
-	User addUser(User user);
-	
-	boolean deleteUser(int id);
 }

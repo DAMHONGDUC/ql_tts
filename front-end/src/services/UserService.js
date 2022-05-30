@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const URL_USER_REST_API = "http://localhost:8080/api/users";
+const RESTAPI_GET_ALL_USER = "http://localhost:8080/api/users";
 
 class UserService {
   getUser() {
-    return axios.get(URL_USER_REST_API);
+    return axios.get(RESTAPI_GET_ALL_USER);
   }
 }
 

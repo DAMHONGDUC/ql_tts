@@ -1,13 +1,13 @@
-package com.example.pv.hanbiro.ql_tts.Service;
+package com.example.pv.hanbiro.ql_tts.service;
 
 import java.util.List;
 
-import com.example.pv.hanbiro.ql_tts.Model.User;
+import com.example.pv.hanbiro.ql_tts.model.User;
 
 public interface UserService {
 	List<User> getUsers();
 	
 	User addUser(User user);
 	
-	boolean deleteUser(int id);
+	void deleteUser(long id);
 }
