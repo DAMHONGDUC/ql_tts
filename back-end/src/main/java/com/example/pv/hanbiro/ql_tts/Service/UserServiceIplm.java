@@ -28,8 +28,7 @@ public class UserServiceIplm implements UserService{
 	}
 
 	@Override
-	public void deleteUser(long id) {
-		
+	public void deleteUser(long id) {		
 		Optional<User> userOpt = repository.findById(id);
 		if(!userOpt.isPresent()) {
 			throw new InvalidUserException("User ID is not existed.");
@@ -38,5 +37,29 @@ public class UserServiceIplm implements UserService{
 		
 	}
 
+	@Override
+	public void updateUser(long id, User user) {
+		
+		if(repository.findById(id).isPresent()) {
+			User Userupdate = repository.findById(id).get();
+			
+			Userupdate.setTendangnhap(user.getTendangnhap());
+			Userupdate.setMatkhau(user.getMatkhau());
+			Userupdate.setEmail(user.getEmail());
+			Userupdate.setSdt(user.getSdt());
+			Userupdate.setTen(user.getTen());
+			
+			repository.save(Userupdate);
+			
+		}	
+		else 
+		{		
+			throw new InvalidUserException("User ID is not existed.");
+		}	
+	}
+
+	
+	
+	
 		
 }

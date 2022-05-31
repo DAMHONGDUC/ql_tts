@@ -10,7 +10,7 @@ import {
   Row,
   Table,
 } from "react-bootstrap";
-import { Toggle } from "rsuite";
+
 import { FaPencilAlt, FaPlus, FaTrashAlt } from "react-icons/fa";
 import React, { useEffect, useState, Text } from "react";
 
@@ -50,18 +50,15 @@ export const Menu = (props) => {
     setNewUser(initCurrentUser);
   };
 
-  const onFormSubmit = (newUser) => {
-    const id = users.length + 1;
-    setUsers([...users, { ...newUser, id }]);
-  };
-
   const onEdit = (currUser) => {
     setShowEdit(true);
     setCurrUser({ ...currUser, currUser });
   };
 
   const onSubmitAdd = (newUser) => {
-    onFormSubmit(newUser);
+    UserService.addUser(newUser).then((response) => {
+      console.log(response);
+    });
   };
 
   const onSubmitEdit = (currUser) => {
@@ -69,9 +66,13 @@ export const Menu = (props) => {
   };
 
   const onUpdateUser = (newUser) => {
-    setEdit(false);
-    let id = newUser.id;
-    setUsers(users.map((i) => (i.id === id ? newUser : i)));
+    UserService.updateUser(newUser.id, newUser).then((response) => {
+      if (response.data === "Update user successfully") {
+        setEdit(false);
+        let id = newUser.id;
+        setUsers(users.map((i) => (i.id === id ? newUser : i)));
+      }
+    });
   };
 
   const onDeleteUser = (currentUser) => {

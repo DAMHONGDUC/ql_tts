@@ -23,7 +23,7 @@ import lombok.Setter;
 public class User {
 
 	@Id
-	@Column(name="ID_USER")
+	@Column(name="ID")
 	private long id;
 	
 	@Column(name="TENDANGNHAP", nullable = false)
