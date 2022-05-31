@@ -34,7 +34,6 @@ export const Menu = (props) => {
 
   const Spacer = require("react-spacer");
   const [newUser, setNewUser] = useState(initCurrentUser);
-  const [editing, setEdit] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [currUser, setCurrUser] = useState(initCurrentUser);
@@ -56,8 +55,17 @@ export const Menu = (props) => {
   };
 
   const onSubmitAdd = (newUser) => {
+    const id =
+      Math.max.apply(
+        Math,
+        users.map(function (o) {
+          return o.id;
+        })
+      ) + 1;
     UserService.addUser(newUser).then((response) => {
-      console.log(response);
+      if (response.status == 201) {
+        setUsers([...users, { ...response.data, id }]);
+      }
     });
   };
 
@@ -68,7 +76,6 @@ export const Menu = (props) => {
   const onUpdateUser = (newUser) => {
     UserService.updateUser(newUser.id, newUser).then((response) => {
       if (response.data === "Update user successfully") {
-        setEdit(false);
         let id = newUser.id;
         setUsers(users.map((i) => (i.id === id ? newUser : i)));
       }
